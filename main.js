@@ -12,14 +12,11 @@ let dayNames = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
 function toggleClick() {
 
   if ($(this).data('isChecked')) {
-    $(this).css('background', "url('" + spriteImage + "') -" + $(this).data('y-index')*spriteSize.toString() + "px -" + $(this).data('x-index')*spriteSize + "px");
+    $(this).css('background', "url('" + spriteImage + "') -" + ($(this).data('x-index')*spriteSize).toString() + "px -" + ($(this).data('y-index')*spriteSize).toString() + "px");
     $(this).data('isChecked', false);
   } else {
-    var yRand = Math.round(nrowsSpritesX*Math.random());
-    var yIndex = nrowsSpritesO + yRand;
-    console.log([yRand, yIndex]);
-
-    $(this).css('background', "url('" + spriteImage + "') -" + yIndex*spriteSize.toString() + "px -" + $(this).data('x-index')*spriteSize.toString() + "px");
+    var yIndex = nrowsSpritesO + Math.round((nrowsSpritesX-1)*Math.random()); // choose random row for X
+    $(this).css('background', "url('" + spriteImage + "') -" + ($(this).data('x-index')*spriteSize).toString() + "px -" + (yIndex*spriteSize).toString() + "px");
     $(this).data('isChecked', true);
   }
 }
@@ -36,12 +33,12 @@ function main() {
   for (var i = 0; i < nrows; i++) {
     for (var j = 0; j < ncols; j++) {
 
-      var yIndex = Math.round(nrowsSpritesO*Math.random());
-      var xIndex = Math.round(ncolsSprites*Math.random());
+      var yIndex = Math.round((nrowsSpritesO-1)*Math.random());
+      var xIndex = Math.round((ncolsSprites-1)*Math.random());
 
       d = document.createElement('div');
       $(d).html('&nbsp;')
-        .css('background', "url('" + spriteImage + "') -" + yIndex*spriteSize.toString() + "px -" + xIndex*spriteSize.toString() + "px")
+        .css('background', "url('" + spriteImage + "') -" + (xIndex*spriteSize).toString() + "px -" + (yIndex*spriteSize).toString() + "px")
         .data('x-index', xIndex)
         .data('y-index', yIndex)
         .data('isChecked', false)
