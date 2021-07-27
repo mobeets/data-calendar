@@ -32,10 +32,21 @@ canvas {
 }
 
 .block-column-title {
-	height: 10px;
+	height: 15px;
 	text-align: center;
 }
 
 .block:hover {
 	opacity: 0.5;
+}
+
+.block-item-overlay {
+  content: " ";
+  z-index: 10;
+  position: relative;
+  top: -15px; /* .block-column-title height */
+  right: 0;
+  height: 50px;
+  width: 50px;
+  /*background: url('sprites-50.png') 0 -650px;*/
 }

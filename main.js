@@ -10,13 +10,16 @@ let d;
 let dayNames = ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su'];
 
 function toggleClick() {
+  console.log($(this));
 
+  var overlay = $(this).children('.block-item-overlay').eq(0);
   if ($(this).data('isChecked')) {
-    $(this).css('background', "url('" + spriteImage + "') -" + ($(this).data('x-index')*spriteSize).toString() + "px -" + ($(this).data('y-index')*spriteSize).toString() + "px");
+    // $(this).css('background', "url('" + spriteImage + "') -" + ($(this).data('x-index')*spriteSize).toString() + "px -" + ($(this).data('y-index')*spriteSize).toString() + "px");
+    overlay.css('background', '');
     $(this).data('isChecked', false);
   } else {
     var yIndex = nrowsSpritesO + Math.round((nrowsSpritesX-1)*Math.random()); // choose random row for X
-    $(this).css('background', "url('" + spriteImage + "') -" + ($(this).data('x-index')*spriteSize).toString() + "px -" + (yIndex*spriteSize).toString() + "px");
+    overlay.css('background', "url('" + spriteImage + "') -" + ($(this).data('x-index')*spriteSize).toString() + "px -" + (yIndex*spriteSize).toString() + "px");
     $(this).data('isChecked', true);
   }
 }
@@ -45,6 +48,9 @@ function main() {
         .addClass('block').addClass('block-item')
         .click(toggleClick)
         .appendTo('#calendar');
+      d2 = document.createElement('div');
+      $(d2).html('&nbsp;')
+        .addClass('block-item-overlay').appendTo(d);
     }
 	}
 }
