@@ -8,7 +8,7 @@
 	- the size of the calendar could be dynamic (e.g., filling the screen)
 	- each box could have data attributes like month/day/count/etc
 	- getting object we're hovering/clicking on would be more natural
-
+	- also would then work on mobile...
 
 ## Notes
 
