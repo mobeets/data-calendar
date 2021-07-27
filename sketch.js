@@ -1,5 +1,3 @@
-//
-
 let sprites;
 let squareSize = 20;
 let spriteSize = 150;
