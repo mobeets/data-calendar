@@ -20,7 +20,7 @@ canvas {
 
 #calendar {
 	float: left;
-	width: 700px; /* spriteSize*14 */
+	width: 1400px; /* spriteSize*14 */
 }
 
 .block {

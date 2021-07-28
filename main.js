@@ -4,8 +4,8 @@ let spriteSize = 50;
 let nrowsSpritesO = 13;
 let nrowsSpritesX = 10;
 let ncolsSprites = 4;
-let N_DEFAULT = 26*14;
-let NCOLS_DEFAULT = 14;
+let NCOLS_DEFAULT = 7*4;
+let N_DEFAULT = 13*NCOLS_DEFAULT;
 let ncols;
 let dayNames = ['Su', 'M', 'T', 'W', 'Th', 'F', 'Sa'];
 // let dayNames = ['S', '', '', '', '', '', ''];
@@ -43,7 +43,11 @@ function handleDialog(event) {
   reader.readAsText(file);
   reader.onload = function(event){
     var csv = event.target.result;
-    data = $.csv.toArrays(csv);    
+    try {
+      data = $.csv.toArrays(csv);
+    } catch {
+      alert('Please upload a csv file with two entries per row (Date, Count).');
+    }
     draw(data);
   }
 }
@@ -73,6 +77,9 @@ function draw(data) {
 
   // get date from first row
   if (data.length > 0) {
+    if (data[0].length != 2) {
+      alert('Please upload a csv file with two entries per row (Date, Count).');
+    }
     var firstDate = new Date(data[0][0]);
     var firstDayOfWeek = firstDate.getDay();
   } else {
@@ -89,7 +96,11 @@ function draw(data) {
   for (var i = 0; i < n; i++) {
     var isChecked;
     if (i < data.length) {
-      isChecked = parseInt(data[i][1]) > 0;
+      try {
+        isChecked = parseInt(data[i][1]) > 0;
+      } catch {
+        alert('Please upload a csv file with two entries per row (Date, Count).');
+      }
     } else {
       isChecked = false;
     }
